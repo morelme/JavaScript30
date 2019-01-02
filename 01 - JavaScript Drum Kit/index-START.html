@@ -80,6 +80,7 @@
 
     const keys = document.querySelectorAll('.key');
     keys.forEach((item, index) => {
+        // Listen for transition end event on key, which means the animation is complete
         item.addEventListener('transitionend', removePlayingClass);
     });
 </script>
