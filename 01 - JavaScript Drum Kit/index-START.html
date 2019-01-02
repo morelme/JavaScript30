@@ -58,7 +58,31 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+    const playSound = (event) => {
 
+        const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`),
+            key = document.querySelector(`.key[data-key="${event.keyCode}"]`);
+        // If key is pressed a second time before it is done playing, it won't play.
+        // "Rewind" it so it will play.
+        if (audio.currentTime > 0) {
+            audio.currentTime = 0;
+        }
+        audio.play();
+
+        key.classList.add('playing');
+    },
+        removePlayingClass = (event) => {
+            const keyCode = event.target.attributes[0].value,
+                key = document.querySelector(`.key[data-key="${keyCode}"]`);
+            key.classList.remove('playing');
+        };
+
+    window.addEventListener("keydown", playSound);
+
+    const keys = document.querySelectorAll('.key');
+    keys.forEach((item, index) => {
+        item.addEventListener('transitionend', removePlayingClass);
+    });
 </script>
 
 
