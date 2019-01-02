@@ -72,9 +72,8 @@
         key.classList.add('playing');
     },
         removePlayingClass = (event) => {
-            const keyCode = event.target.attributes[0].value,
-                key = document.querySelector(`.key[data-key="${keyCode}"]`);
-            key.classList.remove('playing');
+            if (event.propertyName !== 'transform') return;
+            event.target.classList.remove('playing');
         };
 
     window.addEventListener("keydown", playSound);
