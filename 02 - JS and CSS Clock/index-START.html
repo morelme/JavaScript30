@@ -64,11 +64,32 @@
       top: 50%;
     }
 
+    .second-hand {
+        transform-origin: 100%;
+        transform: rotate(90deg);
+        transition: all .05s cubic-bezier(0.1, 2.7, 0.58, 1);
+    }
+
   </style>
 
+
+
   <script>
+    const secondHand = document.querySelector('.second-hand'),
+        moveSecondHand = () => {
+            const currentDate = new Date(),
+            currentSecond = currentDate.getSeconds(),
+            currentMinute = currentDate.getMinutes(),
+            //Equation to convert seconds into degrees
+            degreesToRotate = ((currentSecond / 60) * 360) + 90;
+            secondHand.style.transform = `rotate(${degreesToRotate}deg)`;
+            console.log("currentMinute", currentMinute);
 
+        };
 
+        
+    setInterval(moveSecondHand, 1000);
+    setInterval 
   </script>
 </body>
 </html>
